@@ -1,0 +1,36 @@
+form {
+	max-width: 520px;
+	margin: 0 auto;
+	padding: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+form button {
+	display: block;
+	margin: 0 auto;
+	background-color: #333;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+form button:hover,
+form button:active {
+	background-color: #555;
+	color: white;
+}
+
+form p a {
+	color: #333;
+}
+
+form p a:hover,
+form p a:active {
+	color: #555;
+}

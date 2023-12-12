@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Бронь - AM PM
+{% endblock %}
+
+{% block static %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'store/css/reservation.css' %}">
+<script src="{% static 'store/js/reservation.js' %}" defer></script>
+{% endblock %}
+
+{% block main %}Бронювання{% endblock %}
+
+{% block content %}
+    <div class="content-container">
+        <h2>Виберіть дату:</h2>
+        <div class="date-form-container">
+            <form method="get" action="{% url 'reservation' %}">
+                <input type="date" name="date" id="selectedDate" value="{{ selected_date|date:'Y-m-d' }}" min="{{ min_date }}" required>
+                <input type="submit" value="Обрати">
+            </form>
+        </div>
+    </div>
+    {% if selected_date %}
+        <br>
+        <div class="content-container">
+            <h2>Схема залу на {{ selected_date|date:"Y-m-d" }}</h2>    
+        </div>
+        <br>
+        <div class="content-container">
+            <form method="post" action="{% url 'reservation' %}" id="reservationForm" style="display: none; margin-bottom: 20px;">
+                {% csrf_token %}
+                
+                <input type="hidden" name="date" value="{{ selected_date|date:"Y-m-d" }}">
+                    
+                <label for="customer_name">Ім'я клієнта:</label>
+                <input type="text" name="customer_name" required>
+                <br>
+                <label for="customer_email">Email клієнта:</label>
+                <input type="email" name="customer_email" required>
+                
+                <input type="hidden" name="selected_tables" id="selectedTablesInput" value="">
+                <input type="submit" value="Забронювати">
+            </form> 
+        </div>
+
+        <div class="tables-container">
+            {% for table in tables %}
+                <div id="{{ table.id }}" class="table
+                    {% if table.reservation_set.all %}reserved{% endif %}
+                    {% if table.is_reserved %}already-reserved{% endif %}
+                    {% if table.shape == 'oval' %}oval-table{% endif %}"
+                    style="left: {{ table.horizontal_coordinate|stringformat:'f' }}%;
+                            top: {{ table.vertical_coordinate|stringformat:'f' }}%;
+                            width: {{ table.width_percentage|stringformat:'f' }}%;
+                            height: {{ table.length_percentage|stringformat:'f' }}%;">
+                    <a href="#" onclick="selectTable(event, {{ table.id }})">{{ table.seats }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

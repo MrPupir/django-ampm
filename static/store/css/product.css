@@ -1,0 +1,29 @@
+.product-details {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	max-width: 1085px;
+	margin: auto;
+}
+
+.review-details {
+	display: block;
+	align-items: center;
+	justify-content: center;
+	max-width: 1085px;
+	margin: auto;
+}
+
+.product-image {
+	margin-right: 20px;
+}
+
+.rounded-image {
+	border-radius: 10px;
+}
+
+.product-info {
+	text-align: center;
+}

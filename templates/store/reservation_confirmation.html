@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Бронювання підтверджено - AM PM
+{% endblock %}
+
+{% block static %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'store/css/reservation.css' %}">
+{% endblock %}
+
+{% block main %}Ваше бронювання підтверджено{% endblock %}
+
+{% block content %}
+    <div class="center-container">
+        <p>Дата бронювання: {{ reservation.date|date:"Y-m-d" }}</p>
+        <p>Ім'я клієнта: {{ reservation.customer_name }}</p>
+        <p>Email клієнта: {{ reservation.customer_email }}</p>
+
+        <h2>Заброньовані столики:</h2>
+        <ul>
+            {% for reserved_table in reservation.reserved_tables.all %}
+                <li>Номер {{ reserved_table.table.id }} — {% if reserved_table.table.shape == 'rectangle' %}
+                    {{ 'прямокутний' }}
+                {% elif reserved_table.table.shape == 'oval' %}
+                    {{ 'овальний' }}
+                {% else %}
+                    {{ reserved_table.table.shape }}
+                {% endif %}, {{ reserved_table.table.seats }} місць</li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{% url 'products_list' %}">На головну</a>
+    </div>
+{% endblock %}

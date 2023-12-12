@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Оформлення замовлення - AM PM
+{% endblock %}
+
+{% block static %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'store/css/order.css' %}">
+{% endblock %}
+
+{% block main %}Оформлення замовлення{% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'order' %}">
+        {% csrf_token %}
+
+        <p>
+            <label for="delivery_address">Адреса доставки:</label>
+            <input type="text" name="delivery_address" required><br>
+        </p>
+    
+        <p>
+            <label for="preferred_delivery_time">Бажаний час і дата доставки:</label>
+            <input type="datetime-local" name="preferred_delivery_time" min="{{ default_delivery_time }}" value="{{ default_delivery_time }}" required><br>
+        </p>
+
+        <p>
+            <label for="phone_number">Номер телефону:</label>
+            <input type="tel" name="phone_number" pattern="^\+380\d{9}$" title="Введіть номер у форматі +380XXXXXXXXX" required><br>
+        </p>
+
+        <p>
+            <label for="full_name">ПІБ:</label>
+            <input type="text" name="full_name" required><br>
+        </p>
+    
+        <p>
+            <button type="submit">Замовити</button>
+        </p>
+    </form>
+{% endblock %}

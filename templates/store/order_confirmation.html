@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Замовлення підтверджено - AM PM
+{% endblock %}
+
+{% block main %}Ваше замовлення підтверджено{% endblock %}
+
+{% block content %}
+    <div class="center-container">
+        <p>Номер замовлення: {{ order.id }}</p>
+        <p>Адреса доставки: {{ order.delivery_address }}</p>
+        <p>Бажаний час і дата доставки: {{ order.preferred_delivery_time }}</p>
+        <p>Номер телефону: {{ order.phone_number }}</p>
+        <p>ПІБ: {{ order.full_name }}</p>
+
+        <h2>Товари в замовленні:</h2>
+        <ul>
+            {% for order_item in order.orderitem_set.all %}
+                <li>{{ order_item.product.name }} - {{ order_item.quantity }} ({{ order_item.price }} грн.)</li>
+            {% endfor %}
+        </ul>
+        
+        <p>Загальна вартість: {{ order.total_price|floatformat:2 }} грн.</p>
+
+        <a href="{% url 'products_list' %}">На головну</a>
+    <div>
+{% endblock %}

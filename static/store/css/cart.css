@@ -1,0 +1,43 @@
+.cart-table {
+	width: 80%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: center;
+}
+
+.cart-table th {
+	background-color: #f2f2f2;
+}
+
+.thumbnail {
+	width: 50px;
+	height: 50px;
+	border: 2px solid grey;
+	border-radius: 50%;
+}
+
+.order-button-container {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.order-button {
+	padding: 10px 20px;
+	background-color: #333;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin: 0 auto;
+}
+
+.order-button:hover {
+	background-color: #555;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p style="font-weight: bold;">Дякуємо за бронювання на {{ reservation.date|date:"Y-m-d" }}. Ваше бронювання підтверджено.</p>
+
+    <p style="font-weight: bold;">Дата бронювання: {{ reservation.date|date:"Y-m-d" }}</p>
+    <p style="font-weight: bold;">Ім'я клієнта: {{ reservation.customer_name }}</p>
+    <p style="font-weight: bold;">Email клієнта: {{ reservation.customer_email }}</p>
+
+    <h2 style="font-weight: bold;">Заброньовані столики:</h2>
+    <ul>
+        {% for reserved_table in reservation.reserved_tables.all %}
+            <li style="font-weight: bold;">Номер {{ reserved_table.table.id }} — {% if reserved_table.table.shape == 'rectangle' %}
+                {{ 'прямокутний' }}
+            {% elif reserved_table.table.shape == 'oval' %}
+                {{ 'овальний' }}
+            {% else %}
+                {{ reserved_table.table.shape }}
+            {% endif %}, {{ reserved_table.table.seats }} місць</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

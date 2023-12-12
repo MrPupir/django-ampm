@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AM PM{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/css/base.css' %}">
+    {% block static %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <h1><a href="{% url 'products_list' %}">AM PM</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'products_list' %}"><img src="{% static 'store/img/products_list.png' %}" alt="Products List">Головна</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'reservation' %}"><img src="{% static 'store/img/reservation.png' %}" alt="Reservation">Бронь</a></li>
+                    <li><a href="{% url 'cart' %}"><img src="{% static 'store/img/cart.png' %}" alt="Cart">Кошик</a></li>
+                    <li><a href="{% url 'logout' %}"><img src="{% static 'store/img/logout.png' %}" alt="Logout">Вийти</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}"><img src="{% static 'store/img/login.png' %}" alt="Login">Увійти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <h1 class="main-title">{% block main %}Головна{% endblock %}</h1>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 AM PM.</p>
+    </footer>
+
+</body>
+</html>
