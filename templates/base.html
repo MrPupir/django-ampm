@@ -18,7 +18,7 @@
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'reservation' %}"><img src="{% static 'store/img/reservation.png' %}" alt="Reservation">Бронь</a></li>
                     <li><a href="{% url 'cart' %}"><img src="{% static 'store/img/cart.png' %}" alt="Cart">Кошик</a></li>
-                    <li><a href="{% url 'logout' %}"><img src="{% static 'store/img/logout.png' %}" alt="Logout">Вийти</a></li>
+                    <li><a href="{% url 'logout' %}"><img src="{% static 'store/img/logout.png' %}" alt="Logout">Вийти ({{ user }})</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}"><img src="{% static 'store/img/login.png' %}" alt="Login">Увійти</a></li>
                 {% endif %}
