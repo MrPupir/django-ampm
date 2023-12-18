@@ -1,0 +1,6 @@
+
+*.png
+*.jpg
+*.sqlite3
+Pipfile
+*.lock
